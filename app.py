@@ -93,7 +93,7 @@ def delete_stock(id):
         return jsonify({"error": "無權限刪除此股票"}), 403
     db.session.delete(stock)
     db.session.commit()
-    return redirect(url_for('index'))$ <name>\Scripts\activate
+    return redirect(url_for('index'))
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
