@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>股票投資組合</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="header">
+        <h1>您的股票投資組合</h1>
+        <div class="user-info">
+            <span>歡迎, {{ current_user.username }}</span> |
+            <a href="{{ url_for('logout') }}">登出</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <button class="button" onclick="location.href='{{ url_for('add_stock_page') }}'">新增股票</button>
+        
+        <table class="table">
+            <tr>
+                <th>股票名稱</th>
+                <th>持有股數</th>
+                <th>買進價</th>
+                <th>操作</th>
+            </tr>
+            {% for stock in portfolio %}
+            <tr>
+                <td>{{ stock['stock'] }}</td>
+                <td>{{ stock['shares'] }}</td>
+                <td>{{ stock['bid_price'] }}</td>
+                <td>
+                    <a href="{{ url_for('stock_detail', stock_id=stock['id']) }}">查看</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

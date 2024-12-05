@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>編輯股票資訊</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="header">
+        <h1>編輯股票資訊</h1>
+        <div class="user-info">
+            <span>歡迎, {{ current_user.username }}</span> |
+            <a href="{{ url_for('logout') }}">登出</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <form method="POST" action="{{ url_for('update_stock', id=stock.id) }}" class="auth-form">
+            <label>股票名稱：</label>
+            <input type="text" name="stock" value="{{ stock.stock }}" required><br><br>
+            <label>持有股數：</label>
+            <input type="number" name="shares" value="{{ stock.shares }}" required><br><br>
+            <label>買進價：</label>
+            <input type="number" name="bid_price" step="0.01" value="{{ stock.bid_price }}" required><br><br>
+            <button type="submit" class="button">儲存</button>
+        </form>
+        <button class="button" onclick="location.href='{{ url_for('index') }}'">返回投資組合</button>
+    </div>
+</body>
+</html>
